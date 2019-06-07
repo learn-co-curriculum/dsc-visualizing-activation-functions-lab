@@ -14,7 +14,7 @@ You will be able to:
 
 ## Load a Model  
 
-For this lab, we have saved a model **chest_xray_all_with_augmentation_data.h5**.  
+For this lab, load the saved a model **chest_xray_all_with_augmentation_data.h5**.  
 This saved file includes both the model architecture and the trained weights. See the `model.save()` method for further details. The model was built in order to help identify patients with pneumonia. Start simply by loading the model and pulling up a summary of the layers. (To load the model use the `keras.models.load_model` method.) 
 
 
@@ -24,7 +24,7 @@ This saved file includes both the model architecture and the trained weights. Se
 
 ## Load an Image
 
-Before we plot the learned representations of the convolutional base, let's import an image and display it prior to processing. This will provide us a comparison to the transformations formed by the model's feature maps.   
+Before you plot the learned representations of the convolutional base, let's import an image and display it prior to processing. This will provide a comparison to the transformations formed by the model's feature maps.   
 
 Load and display the image **person3_virus_16.jpeg**.
 
@@ -35,7 +35,7 @@ Load and display the image **person3_virus_16.jpeg**.
 
 ## Transform the Image to a Tensor and Visualize Again
 
-Recall that we will always preprocess our images into tensors when using deep learning. As such, preprocess this image and then redisplay the tensor.
+Recall that you should always preprocess our images into tensors when using deep learning. As such, preprocess this image and then redisplay the tensor.
 
 
 ```python
@@ -44,9 +44,9 @@ Recall that we will always preprocess our images into tensors when using deep le
 
 ## Plot Feature Maps
 
-Now that we've loaded a model, practice visualizing each of the channels for each of feature maps of the convolutional layers. Recall that this process will take a few steps. First, extract the feature maps, or layer outputs from each of the activation functions in the model. From there, generate models that transform the image from its raw state to these feature maps. From there, you can then take these transformations and visualize each channel for each feature map.  
+Now that you've loaded a model, practice visualizing each of the channels for each of feature maps of the convolutional layers. Recall that this process will take a few steps. First, extract the feature maps, or layer outputs from each of the activation functions in the model. From there, generate models that transform the image from its raw state to these feature maps. From there, you can then take these transformations and visualize each channel for each feature map.  
 
-To preview the results of our solution code, take a sneek peak at the Intermediate_Activations_Visualized.pdf file.
+To preview the results of the solution code, take a sneek peak at the Intermediate_Activations_Visualized.pdf file.
 
 
 ```python

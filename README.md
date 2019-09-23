@@ -19,17 +19,12 @@ This saved file includes both the model architecture and the trained weights. Se
 
 
 ```python
-#Your code here
 from keras.models import load_model
 model = load_model('chest_xray_all_with_augmentation_data.h5')
 model.summary()
 ```
 
-    /Users/matthew.mitchell/anaconda3/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
-      from ._conv import register_converters as _register_converters
-    Using TensorFlow backend.
-
-
+    Model: "sequential_1"
     _________________________________________________________________
     Layer (type)                 Output Shape              Param #   
     =================================================================
@@ -69,7 +64,6 @@ Load and display the image **person3_virus_16.jpeg**.
 
 
 ```python
-#Your code here
 from keras.preprocessing import image
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
@@ -91,7 +85,6 @@ Recall that you should always preprocess our images into tensors when using deep
 
 
 ```python
-#Your code here
 import numpy as np
 
 img_tensor = image.img_to_array(img)
@@ -123,7 +116,6 @@ To preview the results of the solution code, take a sneek peak at the Intermedia
 
 
 ```python
-#Your code here
 from keras import models
 import math #used for determining the number of rows in our figure below
 
@@ -144,17 +136,17 @@ total_features = sum([a.shape[-1] for a in activations])
 total_features
 
 n_cols = 16
-n_rows = math.ceil(total_features / n_columns)
+n_rows = math.ceil(total_features / n_cols)
 
 
 iteration = 0
-fig , axes = plt.subplots(nrows=n_rows, ncols=n_columns, figsize=(n_cols, n_rows*1.5))
+fig , axes = plt.subplots(nrows=n_rows, ncols=n_cols, figsize=(n_cols, n_rows*1.5))
 
 for layer_n, layer_activation in enumerate(activations):
     n_channels = layer_activation.shape[-1]
     for ch_idx in range(n_channels):
-        row = iteration // n_columns
-        column = iteration % n_columns
+        row = iteration // n_cols
+        column = iteration % n_cols
     
         ax = axes[row, column]
 
@@ -181,7 +173,7 @@ plt.savefig("Intermediate_Activations_Visualized.pdf")
 plt.show()
 ```
 
-    /Users/matthew.mitchell/anaconda3/lib/python3.6/site-packages/ipykernel_launcher.py:41: RuntimeWarning: invalid value encountered in true_divide
+    /Users/alex/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:40: RuntimeWarning: invalid value encountered in true_divide
 
 
 

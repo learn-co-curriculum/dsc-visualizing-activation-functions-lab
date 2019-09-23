@@ -19,7 +19,7 @@ This saved file includes both the model architecture and the trained weights. Se
 
 
 ```python
-#Your code here
+# Your code here
 ```
 
 ## Load an Image
@@ -30,7 +30,7 @@ Load and display the image **person3_virus_16.jpeg**.
 
 
 ```python
-#Your code here
+# Your code here
 ```
 
 ## Transform the Image to a Tensor and Visualize Again
@@ -39,7 +39,7 @@ Recall that you should always preprocess our images into tensors when using deep
 
 
 ```python
-#Your code here
+# Your code here
 ```
 
 ## Plot Feature Maps
@@ -50,7 +50,7 @@ To preview the results of the solution code, take a sneek peak at the Intermedia
 
 
 ```python
-#Your code here
+# Your code here
 ```
 
 ## Summary

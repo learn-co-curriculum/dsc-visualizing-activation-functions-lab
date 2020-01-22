@@ -3,19 +3,18 @@
 
 ## Introduction
 
-Now that you've built your own CNN and seen how to visualize feature maps, its time to practice loading a pretrained model from file and practice visualizing the learned features systematically. In this lab, you'll expand upon the code from the previous lesson in order to succinctly visualize all the channels from each layer in a CNN.
+Now that you've built your own CNN and seen how to visualize feature maps, its time to practice loading a pretrained model from file and visualize the learned features systematically. In this lab, you'll expand upon the code from the previous lesson in order to succinctly visualize all the channels from each layer in a CNN.
 
 ## Objectives
 
-You will be able to:
+In this lab you will: 
 
-* Load a saved model
-* Visualize the filters produced by hidden layers in a CNN
+- Load a saved Keras model 
+- Use Keras methods to visualize the activation functions in CNNs 
 
 ## Load a Model  
 
-For this lab, load the saved a model **chest_xray_all_with_augmentation_data.h5**.  
-This saved file includes both the model architecture and the trained weights. See the `model.save()` method for further details. The model was built in order to help identify patients with pneumonia. Start simply by loading the model and pulling up a summary of the layers. (To load the model use the `keras.models.load_model` method.) 
+For this lab, load the saved model `'chest_xray_all_with_augmentation_data.h5'`. This saved file includes both the model architecture and the trained weights. See the `model.save()` method for further details. The model was built in order to help identify patients with pneumonia. Start simply by loading the model and pulling up a summary of the layers. (To load the model use the `keras.models.load_model()` function.) 
 
 
 ```python
@@ -24,7 +23,26 @@ model = load_model('chest_xray_all_with_augmentation_data.h5')
 model.summary()
 ```
 
-    Model: "sequential_1"
+    Using TensorFlow backend.
+
+
+    WARNING:tensorflow:From //anaconda3/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:517: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+    
+    WARNING:tensorflow:From //anaconda3/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:4138: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+    
+    WARNING:tensorflow:From //anaconda3/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:3976: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+    
+    WARNING:tensorflow:From //anaconda3/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:174: The name tf.get_default_session is deprecated. Please use tf.compat.v1.get_default_session instead.
+    
+    WARNING:tensorflow:From //anaconda3/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:181: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+    
+    WARNING:tensorflow:From //anaconda3/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:186: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+    
+    WARNING:tensorflow:From //anaconda3/lib/python3.7/site-packages/keras/optimizers.py:790: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+    
+    WARNING:tensorflow:From //anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/nn_impl.py:180: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+    Instructions for updating:
+    Use tf.where in 2.0, which has the same broadcast rule as np.where
     _________________________________________________________________
     Layer (type)                 Output Shape              Param #   
     =================================================================
@@ -60,7 +78,7 @@ model.summary()
 
 Before you plot the learned representations of the convolutional base, let's import an image and display it prior to processing. This will provide a comparison to the transformations formed by the model's feature maps.   
 
-Load and display the image **person3_virus_16.jpeg**.
+Load and display the image `'person3_virus_16.jpeg'`.
 
 
 ```python
@@ -76,12 +94,12 @@ plt.show()
 ```
 
 
-![png](index_files/index_4_0.png)
+![png](index_files/index_3_0.png)
 
 
 ## Transform the Image to a Tensor and Visualize Again
 
-Recall that you should always preprocess our images into tensors when using deep learning. As such, preprocess this image and then redisplay the tensor.
+Recall that you should always preprocess images into tensors when using deep learning. As such, preprocess this image and then redisplay the tensor.
 
 
 ```python
@@ -90,13 +108,13 @@ import numpy as np
 img_tensor = image.img_to_array(img)
 img_tensor = np.expand_dims(img_tensor, axis=0)
 
-#Follow the Original Model Preprocessing
+# Follow the Original Model Preprocessing
 img_tensor /= 255.
 
-#Check tensor shape
+# Check tensor shape
 print(img_tensor.shape)
 
-#Preview an image
+# Preview an image
 plt.imshow(img_tensor[0])
 plt.show()
 ```
@@ -105,19 +123,19 @@ plt.show()
 
 
 
-![png](index_files/index_6_1.png)
+![png](index_files/index_5_1.png)
 
 
 ## Plot Feature Maps
 
-Now that you've loaded a model, practice visualizing each of the channels for each of feature maps of the convolutional layers. Recall that this process will take a few steps. First, extract the feature maps, or layer outputs from each of the activation functions in the model. From there, generate models that transform the image from its raw state to these feature maps. From there, you can then take these transformations and visualize each channel for each feature map.  
+Now that you've loaded a model, practice visualizing each of the channels for each of feature maps of the convolutional layers. Recall that this process will take a few steps. First, extract the feature maps, or layer outputs from each of the activation functions in the model. From there, generate models that transform the image from its raw state to these feature maps. You can then take these transformations and visualize each channel for each feature map.  
 
-To preview the results of the solution code, take a sneek peak at the Intermediate_Activations_Visualized.pdf file.
+To preview the results of the solution code, take a sneek peak at the *Intermediate_Activations_Visualized.pdf* file.
 
 
 ```python
 from keras import models
-import math #used for determining the number of rows in our figure below
+import math 
 
 # Extract model layer outputs
 layer_outputs = [layer.output for layer in model.layers[:8]]
@@ -127,7 +145,7 @@ activation_model = models.Model(inputs=model.input, outputs=layer_outputs)
 
 activations = activation_model.predict(img_tensor)
 
-#Extract Layer Names for Labelling
+# Extract Layer Names for Labelling
 layer_names = []
 for layer in model.layers[:8]:
     layer_names.append(layer.name)
@@ -169,15 +187,15 @@ for layer_n, layer_activation in enumerate(activations):
         iteration += 1
 
 fig.subplots_adjust(hspace=1.25)
-plt.savefig("Intermediate_Activations_Visualized.pdf")
+plt.savefig('Intermediate_Activations_Visualized.pdf')
 plt.show()
 ```
 
-    /Users/alex/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:40: RuntimeWarning: invalid value encountered in true_divide
+    //anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:41: RuntimeWarning: invalid value encountered in true_divide
 
 
 
-![png](index_files/index_8_1.png)
+![png](index_files/index_7_1.png)
 
 
 ## Summary

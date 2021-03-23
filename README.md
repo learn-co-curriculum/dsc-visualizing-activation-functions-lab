@@ -1,4 +1,3 @@
-
 ## Visualizing Activation Functions - Lab
 
 ## Introduction
@@ -14,7 +13,7 @@ In this lab you will:
 
 ## Load a Model  
 
-For this lab, load the saved model `'chest_xray_all_with_augmentation_data.h5'`. This saved file includes both the model architecture and the trained weights. See the `model.save()` method for further details. The model was built in order to help identify patients with pneumonia. Start simply by loading the model and pulling up a summary of the layers. (To load the model use the `keras.models.load_model()` function.) 
+For this lab, load the saved model `'cats_dogs_downsampled_with_augmentation_data.h5'`. This saved file includes both the model architecture and the trained weights. See the `model.save()` method for further details. The model was built in order to help identify cat and dog pictures. Start simply by loading the model and pulling up a summary of the layers. (To load the model use the `keras.models.load_model()` function.) 
 
 
 ```python
@@ -25,7 +24,7 @@ For this lab, load the saved model `'chest_xray_all_with_augmentation_data.h5'`.
 
 Before you plot the learned representations of the convolutional base, let's import an image and display it prior to processing. This will provide a comparison to the transformations formed by the model's feature maps.   
 
-Load and display the image `'person3_virus_16.jpeg'`.
+Load and display the image `'dog.1100.jpg'`.
 
 
 ```python

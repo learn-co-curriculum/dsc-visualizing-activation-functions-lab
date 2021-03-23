@@ -1,4 +1,3 @@
-
 ## Visualizing Activation Functions - Lab
 
 ## Introduction
@@ -14,59 +13,40 @@ In this lab you will:
 
 ## Load a Model  
 
-For this lab, load the saved model `'chest_xray_all_with_augmentation_data.h5'`. This saved file includes both the model architecture and the trained weights. See the `model.save()` method for further details. The model was built in order to help identify patients with pneumonia. Start simply by loading the model and pulling up a summary of the layers. (To load the model use the `keras.models.load_model()` function.) 
+For this lab, load the saved model `'cats_dogs_downsampled_with_augmentation_data.h5'`. This saved file includes both the model architecture and the trained weights. See the `model.save()` method for further details. The model was built in order to help identify cat and dog pictures. Start simply by loading the model and pulling up a summary of the layers. (To load the model use the `keras.models.load_model()` function.) 
 
 
 ```python
 from keras.models import load_model
-model = load_model('chest_xray_all_with_augmentation_data.h5')
+model = load_model('cats_dogs_downsampled_with_augmentation_data.h5')
 model.summary()
 ```
 
-    Using TensorFlow backend.
-
-
-    WARNING:tensorflow:From //anaconda3/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:517: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
-    
-    WARNING:tensorflow:From //anaconda3/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:4138: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
-    
-    WARNING:tensorflow:From //anaconda3/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:3976: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
-    
-    WARNING:tensorflow:From //anaconda3/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:174: The name tf.get_default_session is deprecated. Please use tf.compat.v1.get_default_session instead.
-    
-    WARNING:tensorflow:From //anaconda3/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:181: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
-    
-    WARNING:tensorflow:From //anaconda3/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:186: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
-    
-    WARNING:tensorflow:From //anaconda3/lib/python3.7/site-packages/keras/optimizers.py:790: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
-    
-    WARNING:tensorflow:From //anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/nn_impl.py:180: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
-    Instructions for updating:
-    Use tf.where in 2.0, which has the same broadcast rule as np.where
+    Model: "sequential"
     _________________________________________________________________
     Layer (type)                 Output Shape              Param #   
     =================================================================
-    conv2d_1 (Conv2D)            (None, 148, 148, 32)      896       
+    conv2d (Conv2D)              (None, 148, 148, 32)      896       
     _________________________________________________________________
-    max_pooling2d_1 (MaxPooling2 (None, 74, 74, 32)        0         
+    max_pooling2d (MaxPooling2D) (None, 74, 74, 32)        0         
     _________________________________________________________________
-    conv2d_2 (Conv2D)            (None, 72, 72, 64)        18496     
+    conv2d_1 (Conv2D)            (None, 72, 72, 64)        18496     
     _________________________________________________________________
-    max_pooling2d_2 (MaxPooling2 (None, 36, 36, 64)        0         
+    max_pooling2d_1 (MaxPooling2 (None, 36, 36, 64)        0         
     _________________________________________________________________
-    conv2d_3 (Conv2D)            (None, 34, 34, 128)       73856     
+    conv2d_2 (Conv2D)            (None, 34, 34, 128)       73856     
     _________________________________________________________________
-    max_pooling2d_3 (MaxPooling2 (None, 17, 17, 128)       0         
+    max_pooling2d_2 (MaxPooling2 (None, 17, 17, 128)       0         
     _________________________________________________________________
-    conv2d_4 (Conv2D)            (None, 15, 15, 128)       147584    
+    conv2d_3 (Conv2D)            (None, 15, 15, 128)       147584    
     _________________________________________________________________
-    max_pooling2d_4 (MaxPooling2 (None, 7, 7, 128)         0         
+    max_pooling2d_3 (MaxPooling2 (None, 7, 7, 128)         0         
     _________________________________________________________________
-    flatten_1 (Flatten)          (None, 6272)              0         
+    flatten (Flatten)            (None, 6272)              0         
     _________________________________________________________________
-    dense_1 (Dense)              (None, 512)               3211776   
+    dense (Dense)                (None, 512)               3211776   
     _________________________________________________________________
-    dense_2 (Dense)              (None, 1)                 513       
+    dense_1 (Dense)              (None, 1)                 513       
     =================================================================
     Total params: 3,453,121
     Trainable params: 3,453,121
@@ -78,7 +58,7 @@ model.summary()
 
 Before you plot the learned representations of the convolutional base, let's import an image and display it prior to processing. This will provide a comparison to the transformations formed by the model's feature maps.   
 
-Load and display the image `'person3_virus_16.jpeg'`.
+Load and display the image `'dog.1100.jpg'`.
 
 
 ```python
@@ -87,7 +67,7 @@ import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 %matplotlib inline
 
-filename = 'person3_virus_16.jpeg'
+filename = 'dog.1100.jpg'
 img = image.load_img(filename, target_size=(150, 150))
 plt.imshow(img)
 plt.show()
@@ -191,7 +171,8 @@ plt.savefig('Intermediate_Activations_Visualized.pdf')
 plt.show()
 ```
 
-    //anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:41: RuntimeWarning: invalid value encountered in true_divide
+    <ipython-input-15-37c6b5e4b2c0>:41: RuntimeWarning: invalid value encountered in true_divide
+      channel_image /= channel_image.std()
 
 
 

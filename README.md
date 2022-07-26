@@ -1,4 +1,4 @@
-## Visualizing Activation Functions - Lab
+# Visualizing Activation Functions - Lab
 
 ## Introduction
 
@@ -86,7 +86,9 @@ plt.show()
 ```
 
 
+    
 ![png](index_files/index_5_0.png)
+    
 
 
 ## Transform the Image to a Tensor and Visualize Again
@@ -121,14 +123,16 @@ plt.show()
 
 
 
+    
 ![png](index_files/index_8_1.png)
+    
 
 
 ## Plot Feature Maps
 
 Now that you've loaded a model, practice visualizing each of the channels for each of feature maps of the convolutional layers. Recall that this process will take a few steps. First, extract the feature maps, or layer outputs from each of the activation functions in the model. From there, generate models that transform the image from its raw state to these feature maps. You can then take these transformations and visualize each channel for each feature map.  
 
-To preview the results of the solution code, take a sneek peak at the *Intermediate_Activations_Visualized.pdf* file.
+To preview the results of the solution code, take a sneak peek at the *Intermediate_Activations_Visualized.pdf* file.
 
 
 ```python
@@ -200,7 +204,9 @@ plt.show()
 
 
 
+    
 ![png](index_files/index_11_1.png)
+    
 
 
 ## Summary

@@ -74,7 +74,7 @@ Load and display the image `'dog.1100.jpg'`.
 
 ```python
 # __SOLUTION__
-from keras.preprocessing import image
+from tensorflow.keras.preprocessing import image
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 %matplotlib inline
@@ -199,7 +199,7 @@ plt.savefig('Intermediate_Activations_Visualized.pdf')
 plt.show()
 ```
 
-    <ipython-input-15-37c6b5e4b2c0>:41: RuntimeWarning: invalid value encountered in true_divide
+    <ipython-input-4-37c6b5e4b2c0>:41: RuntimeWarning: invalid value encountered in true_divide
       channel_image /= channel_image.std()
 
 

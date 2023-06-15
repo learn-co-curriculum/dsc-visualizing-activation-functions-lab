@@ -17,36 +17,49 @@ For this lab, load the saved model `'cats_dogs_downsampled_with_augmentation_dat
 
 
 ```python
+# Some code to stop comments from tf
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+```
+
+
+```python
 from keras.models import load_model
 model = load_model('cats_dogs_downsampled_with_augmentation_data.h5')
 model.summary()
 ```
 
+    Metal device set to: Apple M1 Pro
     Model: "sequential"
     _________________________________________________________________
-    Layer (type)                 Output Shape              Param #   
+     Layer (type)                Output Shape              Param #   
     =================================================================
-    conv2d (Conv2D)              (None, 148, 148, 32)      896       
-    _________________________________________________________________
-    max_pooling2d (MaxPooling2D) (None, 74, 74, 32)        0         
-    _________________________________________________________________
-    conv2d_1 (Conv2D)            (None, 72, 72, 64)        18496     
-    _________________________________________________________________
-    max_pooling2d_1 (MaxPooling2 (None, 36, 36, 64)        0         
-    _________________________________________________________________
-    conv2d_2 (Conv2D)            (None, 34, 34, 128)       73856     
-    _________________________________________________________________
-    max_pooling2d_2 (MaxPooling2 (None, 17, 17, 128)       0         
-    _________________________________________________________________
-    conv2d_3 (Conv2D)            (None, 15, 15, 128)       147584    
-    _________________________________________________________________
-    max_pooling2d_3 (MaxPooling2 (None, 7, 7, 128)         0         
-    _________________________________________________________________
-    flatten (Flatten)            (None, 6272)              0         
-    _________________________________________________________________
-    dense (Dense)                (None, 512)               3211776   
-    _________________________________________________________________
-    dense_1 (Dense)              (None, 1)                 513       
+     conv2d (Conv2D)             (None, 148, 148, 32)      896       
+                                                                     
+     max_pooling2d (MaxPooling2D  (None, 74, 74, 32)       0         
+     )                                                               
+                                                                     
+     conv2d_1 (Conv2D)           (None, 72, 72, 64)        18496     
+                                                                     
+     max_pooling2d_1 (MaxPooling  (None, 36, 36, 64)       0         
+     2D)                                                             
+                                                                     
+     conv2d_2 (Conv2D)           (None, 34, 34, 128)       73856     
+                                                                     
+     max_pooling2d_2 (MaxPooling  (None, 17, 17, 128)      0         
+     2D)                                                             
+                                                                     
+     conv2d_3 (Conv2D)           (None, 15, 15, 128)       147584    
+                                                                     
+     max_pooling2d_3 (MaxPooling  (None, 7, 7, 128)        0         
+     2D)                                                             
+                                                                     
+     flatten (Flatten)           (None, 6272)              0         
+                                                                     
+     dense (Dense)               (None, 512)               3211776   
+                                                                     
+     dense_1 (Dense)             (None, 1)                 513       
+                                                                     
     =================================================================
     Total params: 3,453,121
     Trainable params: 3,453,121
@@ -75,7 +88,7 @@ plt.show()
 
 
     
-![png](index_files/index_3_0.png)
+![png](index_files/index_4_0.png)
     
 
 
@@ -106,15 +119,15 @@ plt.show()
 
 
     
-![png](index_files/index_5_1.png)
+![png](index_files/index_6_1.png)
     
 
 
 ## Plot Feature Maps
 
-Now that you've loaded a model, practice visualizing each of the channels for each of feature maps of the convolutional layers. Recall that this process will take a few steps. First, extract the feature maps, or layer outputs from each of the activation functions in the model. From there, generate models that transform the image from its raw state to these feature maps. You can then take these transformations and visualize each channel for each feature map.  
+Now that you've loaded a model, practice visualizing each of the channels for each of feature maps of the convolutional layers. Recall that this process will take a few steps. First, extract the feature maps, or layer outputs from each of the activation functions in the model. From there, generate models that transform the image from its raw state to these feature maps. You can then take these transformations and visualize each channel for each feature map.
 
-To preview the results of the solution code, take a sneak peek at the *Intermediate_Activations_Visualized.pdf* file.
+You may want to take a look at the solution branch to help you with this. Note you'll likely get a warning here for runtime, but it does not effect the output.
 
 
 ```python
@@ -157,7 +170,7 @@ for layer_n, layer_activation in enumerate(activations):
                                          ch_idx]
         # Post-process the feature to make it visually palatable
         channel_image -= channel_image.mean()
-        channel_image /= channel_image.std()
+        channel_image /= channel_image.std() 
         channel_image *= 64
         channel_image += 128
         channel_image = np.clip(channel_image, 0, 255).astype('uint8')
@@ -175,13 +188,16 @@ plt.savefig('Intermediate_Activations_Visualized.pdf')
 plt.show()
 ```
 
-    <ipython-input-4-37c6b5e4b2c0>:41: RuntimeWarning: invalid value encountered in true_divide
+    1/1 [==============================] - 0s 78ms/step
+
+
+    /var/folders/g1/ktdyp70d0s5_pbdd__dbqdbw0000gp/T/ipykernel_15150/3365491015.py:41: RuntimeWarning: invalid value encountered in divide
       channel_image /= channel_image.std()
 
 
 
     
-![png](index_files/index_7_1.png)
+![png](index_files/index_8_2.png)
     
 
 

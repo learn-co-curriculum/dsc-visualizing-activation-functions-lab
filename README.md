@@ -17,6 +17,13 @@ For this lab, load the saved model `'cats_dogs_downsampled_with_augmentation_dat
 
 
 ```python
+# Some code to stop comments from tf
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+```
+
+
+```python
 # Your code here
 ```
 
@@ -42,9 +49,9 @@ Recall that you should always preprocess images into tensors when using deep lea
 
 ## Plot Feature Maps
 
-Now that you've loaded a model, practice visualizing each of the channels for each of feature maps of the convolutional layers. Recall that this process will take a few steps. First, extract the feature maps, or layer outputs from each of the activation functions in the model. From there, generate models that transform the image from its raw state to these feature maps. You can then take these transformations and visualize each channel for each feature map.  
+Now that you've loaded a model, practice visualizing each of the channels for each of feature maps of the convolutional layers. Recall that this process will take a few steps. First, extract the feature maps, or layer outputs from each of the activation functions in the model. From there, generate models that transform the image from its raw state to these feature maps. You can then take these transformations and visualize each channel for each feature map.
 
-To preview the results of the solution code, take a sneak peek at the *Intermediate_Activations_Visualized.pdf* file.
+You may want to take a look at the solution branch to help you with this. Note you'll likely get a warning here for runtime, but it does not effect the output.
 
 
 ```python
